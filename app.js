@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Modal = require('react-modal');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
