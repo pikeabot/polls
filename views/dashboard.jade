@@ -6,8 +6,6 @@ html
     link(rel='stylesheet', href='/stylesheets/dashboard.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap-theme.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-    script(src='/bootstrap/js/bootstrap.min.js')
   body
 
     nav(class="navbar navbar-inverse navbar-fixed-top")
@@ -41,27 +39,33 @@ html
               a(href="#") Overview
               span.sr-only (current)
             li
-              a(href="#") Democrats
+              a(href="#", id="DemPoll") Democrats
             li
-              a(href="#") Republicans
+              a(href="#", id="rep-poll-link") Republicans
             li
               a(href="#") Other
 
         div(class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main")
           h1.page-header Vote Here!
+          #poll
+            h3 Who do you think will get the Democratic nomination?
+            form(action="/users/vote/Dem", method="post")
+              div.radio
+                input(type="radio",name="candidate",id="optionsBernie",value="Bernie") 
+                label
+                  Option Bernie
+              div.radio
+                input(type="radio",name="candidate",id="optionsHillary",value="Hillary") 
+                label
+                  Option Hillary
+              input(class="btn btn-default", type="submit", value="Submit")
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')          
+    script(src='/javascripts/build/react.js')
+    script(src='/javascripts/build/react-dom.js')
+    script(src='/javascripts/build/dashboard.js')
+    
 
-          h3 Who do you think will get the Democratic nomination?
-
-          form(action="/users/vote", method="post")
-            div.radio
-              input(type="radio",name="candidate",id="optionsBernie",value="Bernie") 
-              label
-                Option Bernie
-            div.radio
-              input(type="radio",name="candidate",id="optionsHillary",value="Hillary") 
-              label
-                Option Hillary
-            input(class="btn btn-default", type="submit", value="Submit")
 
           
           
