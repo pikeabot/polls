@@ -15,14 +15,20 @@ var demSchema = mongoose.Schema({
 
 });
 
-var DemVote = mongoose.model('DemVote', demSchema);
+var repSchema = mongoose.Schema({
+    Trump: Number,
+    Cruz: Number
 
+});
+
+var DemVote = mongoose.model('DemVote', demSchema);
+var RepVote = mongoose.model('RepVote', repSchema);
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('dashboard', { title: 'Dashboard' });
 });
 
-router.post('/vote', function(req, res) {
+router.post('/vote/Dem', function(req, res) {
 	DemVote.findOne({ }, function (err, demvotes){
 		if (req.body.candidate == 'Bernie') {
   			demvotes.Bernie++;
@@ -34,5 +40,16 @@ router.post('/vote', function(req, res) {
 	});
 });
 
+router.post('/vote/Rep', function(req, res) {
+  RepVote.findOne({ }, function (err, repvotes){
+    if (req.body.candidate == 'Trump') {
+        repvotes.Trump++;
+      }
+      else {
+        repvotes.Cruz++;
+      }
+      repvotes.save();
+  });
+});
 
 module.exports = router;

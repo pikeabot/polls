@@ -8,7 +8,7 @@ var changeToRepPollLink = React.createClass({
   render: function() {
   	if(this.state.showRepPoll) { 
 	    return (
-        React.render(
+        ReactDOM.render(
           React.createElement("div", {id: "rep-poll"}, 
           React.createElement("h3", null, "Who do you think will get the Republican nomination?"), 
             React.createElement("form", {action: "/users/vote/Rep", method: "post"}, 
